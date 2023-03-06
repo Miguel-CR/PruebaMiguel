@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230306053400_Inicio1")]
-    partial class Inicio1
+    [Migration("20230306205024_Inicio")]
+    partial class Inicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,13 +34,6 @@ namespace API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorias");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Nombre = "Desayuno"
-                        });
                 });
 
             modelBuilder.Entity("API.Data.Model.Producto", b =>
@@ -53,40 +46,28 @@ namespace API.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("Descuento")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit ");
 
                     b.Property<string>("Detalle")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(250)");
 
                     b.Property<byte[]>("Imagen")
                         .IsRequired()
-                        .HasColumnType("longblob");
+                        .HasColumnType("Blob");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(70)");
 
-                    b.Property<float>("Precio")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("Decimal(6,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Productos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoriaId = 1,
-                            Descuento = false,
-                            Detalle = "Desayuno tipico de Costa Rica, arroz, frijoles, salsa Lizano y olores.",
-                            Imagen = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            Nombre = "Pinto",
-                            Precio = 2500f
-                        });
                 });
 
             modelBuilder.Entity("API.Data.Model.Producto", b =>

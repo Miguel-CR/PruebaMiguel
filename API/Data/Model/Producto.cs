@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,10 +21,10 @@ namespace API.Data.Model
         [Column(TypeName = "Decimal(6,2)")]
         public float Precio { get; set; }
 
-        [Column(TypeName = "Bool")]
+        [Column(TypeName = "bit ")]
         public bool Descuento { get; set; }
 
-        [Column(TypeName = "VARCHAR(250)")]
+        [Column(TypeName = "Blob")]
         public byte[] Imagen { get; set; }
 
 
@@ -32,6 +33,9 @@ namespace API.Data.Model
         public int CategoriaId { get; set; }
 
         public Categoria Categoria { get; set; }
+
+
+
 
 
     }

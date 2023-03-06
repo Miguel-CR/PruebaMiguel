@@ -1,7 +1,11 @@
 using API.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+//string connectionString = "Server=localhost,3306;Database=restaurante;user=root;password=toor";
+//var serverVersion = ServerVersion.AutoDetect(connectionString);
+
 
 // Add services to the container.
 
@@ -14,7 +18,13 @@ builder.Services.AddDbContext<MyContext>(options =>
 {
     options.UseMySQL(builder.Configuration.GetConnectionString("Default"));
 });
-
+//builder.Services.AddDbContext<MyContext>(
+//            dbContextOptions => dbContextOptions
+//                .UseMySql(connectionString, serverVersion)
+//                .LogTo(Console.WriteLine, LogLevel.Information)
+//                .EnableSensitiveDataLogging()
+//                .EnableDetailedErrors()
+//        );
 
 var app = builder.Build();
 

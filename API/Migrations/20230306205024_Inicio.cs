@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicio1 : Migration
+    public partial class Inicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,11 +34,11 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "longtext", nullable: false),
-                    Detalle = table.Column<string>(type: "longtext", nullable: false),
-                    Precio = table.Column<float>(type: "float", nullable: false),
-                    Descuento = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Imagen = table.Column<byte[]>(type: "longblob", nullable: false),
+                    Nombre = table.Column<string>(type: "VARCHAR(70)", nullable: false),
+                    Detalle = table.Column<string>(type: "VARCHAR(250)", nullable: false),
+                    Precio = table.Column<decimal>(type: "Decimal(6,2)", nullable: false),
+                    Descuento = table.Column<bool>(type: "bit (1)", nullable: false),
+                    Imagen = table.Column<byte[]>(type: "Blob", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -52,16 +52,6 @@ namespace API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.InsertData(
-                table: "Categorias",
-                columns: new[] { "Id", "Nombre" },
-                values: new object[] { 1, "Desayuno" });
-
-            migrationBuilder.InsertData(
-                table: "Productos",
-                columns: new[] { "Id", "CategoriaId", "Descuento", "Detalle", "Imagen", "Nombre", "Precio" },
-                values: new object[] { 1, 1, false, "Desayuno tipico de Costa Rica, arroz, frijoles, salsa Lizano y olores.", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Pinto", 2500f });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_CategoriaId",

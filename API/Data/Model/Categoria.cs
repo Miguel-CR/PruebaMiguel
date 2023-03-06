@@ -15,5 +15,6 @@ namespace API.Data.Model
 
         public ICollection<Producto> Productos { get; set; }
 
+
     }
 }
