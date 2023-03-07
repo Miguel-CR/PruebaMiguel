@@ -1,4 +1,6 @@
+using API.Configuration;
 using API.Data;
+using API.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -25,6 +27,8 @@ builder.Services.AddDbContext<MyContext>(options =>
 //                .EnableSensitiveDataLogging()
 //                .EnableDetailedErrors()
 //        );
+
+builder.Services.AddInjectionConfig();
 
 var app = builder.Build();
 

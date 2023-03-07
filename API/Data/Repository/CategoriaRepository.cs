@@ -16,6 +16,7 @@ namespace API.Data.Repository
         public CategoriaRepository(MyContext context)
         {
             _context = context;
+            dbSet = _context.Set<Categoria>();
         }
         public async Task<Categoria> GetByIdAsync(int id)
         {

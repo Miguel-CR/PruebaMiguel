@@ -10,6 +10,7 @@ namespace API.Data.Model
     public class Producto
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column(TypeName = "VARCHAR(70)")]

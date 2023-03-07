@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Data.Model;
 using API.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,16 +11,17 @@ namespace API.Controllers
     [ApiController]
     public class PruductoController : ControllerBase
     {
-        private readonly MyContext _context;
-        public PruductoController(MyContext context)
+        private readonly IProductoRepository _productoRepository;
+        public PruductoController(IProductoRepository productoRepository)
         {
-            _context = context;
+            _productoRepository = productoRepository;
         }
 
+        // GET: api/<PruductoController>
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var productoRepository = new ProductoRepository(_context);
-            return Ok(await productoRepository.ListProductiAsync());
+            return Ok(await _productoRepository.ListProductoAsync());
         }
 
         //// GET: api/<PruductoController>
@@ -31,15 +33,16 @@ namespace API.Controllers
 
         // GET api/<PruductoController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            return Ok(await _productoRepository.GetProductoByIdAsync(id));
         }
 
         // POST api/<PruductoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(Producto producto)
         {
+            _productoRepository.Create(producto);
         }
 
         // PUT api/<PruductoController>/5

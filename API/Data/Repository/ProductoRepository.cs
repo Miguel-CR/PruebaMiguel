@@ -9,7 +9,7 @@ namespace API.Data.Repository
         void Edit(Producto producto);
         void Delete(int id);
         Task<Producto> GetProductoByIdAsync(int id);
-        Task<IEnumerable<Producto>> ListProductiAsync();
+        Task<IEnumerable<Producto>> ListProductoAsync();
     }
     public class ProductoRepository : IProductoRepository
     {
@@ -18,6 +18,7 @@ namespace API.Data.Repository
         public ProductoRepository(MyContext context)
         {
             _context = context;
+            dbSet = _context.Set<Producto>();
         }
         public void Create(Producto producto)
         {
@@ -40,7 +41,7 @@ namespace API.Data.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Producto>> ListProductiAsync()
+        public async Task<IEnumerable<Producto>> ListProductoAsync()
         {
             return await dbSet.ToListAsync();
         }

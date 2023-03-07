@@ -53,6 +53,16 @@ namespace API.Migrations
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
+            migrationBuilder.InsertData(
+                table: "Categorias",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[] { 1, "Desayuno" });
+
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "Id", "CategoriaId", "Descuento", "Detalle", "Imagen", "Nombre", "Precio" },
+                values: new object[] { 1, 1, false, "Desayuno tipico de Costa Rica, arroz, frijoles, salsa Lizano y olores.", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Pinto", 2500m });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_CategoriaId",
                 table: "Productos",

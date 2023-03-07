@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 //using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System.Data.Common;
+using System.Diagnostics.Contracts;
 using System.Reflection.Metadata;
 
 namespace API.Data
@@ -65,13 +66,23 @@ namespace API.Data
         //}
 
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    //modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-        //    //modelBuilder.Seed();
-        //    base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Categoria>()
+            //.Property(c => c.Id)
+            //.ValueGeneratedOnAdd();
 
-        //}
+            //modelBuilder.Entity<Producto>()
+            //.Property(p => p.Id)
+            //.ValueGeneratedOnAdd();
+
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+
+            modelBuilder.Seed();
+
+            base.OnModelCreating(modelBuilder);
+
+        }
 
     }
 }
