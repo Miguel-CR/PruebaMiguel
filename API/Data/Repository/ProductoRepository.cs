@@ -1,4 +1,5 @@
-﻿using API.Data.Model;
+﻿using API.Application.Validation;
+using API.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data.Repository
@@ -10,6 +11,7 @@ namespace API.Data.Repository
         void Delete(int id);
         Task<Producto> GetProductoByIdAsync(int id);
         Task<IEnumerable<Producto>> ListProductoAsync();
+        //bool IsValid();
     }
     public class ProductoRepository : IProductoRepository
     {
@@ -28,22 +30,34 @@ namespace API.Data.Repository
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var producto = dbSet.Find(id);
+            dbSet.Remove(producto);
+            _context.SaveChanges();
         }
 
         public void Edit(Producto producto)
         {
-            throw new NotImplementedException();
+            dbSet.Update(producto);
+            _context.SaveChanges();
         }
 
         public async Task<Producto> GetProductoByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var producto = await dbSet.FindAsync(id);
+
+            return producto;
+
         }
 
         public async Task<IEnumerable<Producto>> ListProductoAsync()
         {
             return await dbSet.ToListAsync();
         }
+
+        //public bool IsValid()
+        //{
+        //    var validationResult = new ProductoValidation().Validate();
+        //    return validationResult.IsValid;
+        //}
     }
 }

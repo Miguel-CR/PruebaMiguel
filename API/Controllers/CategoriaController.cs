@@ -27,7 +27,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _categoriaRepository.GetByIdAsync(id));
+            return Ok(await _categoriaRepository.GetCategoriaByIdAsync(id));
         }
 
 

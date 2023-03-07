@@ -66,6 +66,15 @@ namespace API.Data
         //}
 
 
+        private void OneToManyRelationshipConfiguration(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Categoria>()
+                .HasMany(c => c.Productos)
+                .WithOne(s => s.Categoria)
+                .IsRequired();
+        }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Categoria>()
@@ -77,7 +86,7 @@ namespace API.Data
             //.ValueGeneratedOnAdd();
 
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
+            OneToManyRelationshipConfiguration(modelBuilder);
             modelBuilder.Seed();
 
             base.OnModelCreating(modelBuilder);

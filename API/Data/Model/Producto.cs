@@ -1,9 +1,11 @@
 ﻿
 
+using API.Application;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API.Data.Model
 {
@@ -26,6 +28,7 @@ namespace API.Data.Model
         public bool Descuento { get; set; }
 
         [Column(TypeName = "Blob")]
+        [JsonConverter(typeof(JsonToByteArrayConverter))]
         public byte[] Imagen { get; set; }
 
 
@@ -33,7 +36,7 @@ namespace API.Data.Model
 
         public int CategoriaId { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
 
 
 

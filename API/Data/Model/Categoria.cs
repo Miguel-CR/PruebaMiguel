@@ -14,7 +14,7 @@ namespace API.Data.Model
         [Column(TypeName = "VARCHAR(70)")]
         public string Nombre { get; set; }
 
-        public ICollection<Producto> Productos { get; set; }
+        public ICollection<Producto>? Productos { get; set; }
 
 
     }

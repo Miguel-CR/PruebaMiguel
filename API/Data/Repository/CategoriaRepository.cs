@@ -6,7 +6,7 @@ namespace API.Data.Repository
 
     public interface ICategoriaRepository
     {
-        Task<Categoria> GetByIdAsync(int id);
+        Task<Categoria> GetCategoriaByIdAsync(int id);
         Task<IEnumerable<Categoria>> ListCategoriaAsync();
     }
     public class CategoriaRepository : ICategoriaRepository
@@ -18,9 +18,11 @@ namespace API.Data.Repository
             _context = context;
             dbSet = _context.Set<Categoria>();
         }
-        public async Task<Categoria> GetByIdAsync(int id)
+        public async Task<Categoria> GetCategoriaByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var categoria = await dbSet.FindAsync(id);
+
+            return categoria;
         }
 
         public async Task<IEnumerable<Categoria>> ListCategoriaAsync()

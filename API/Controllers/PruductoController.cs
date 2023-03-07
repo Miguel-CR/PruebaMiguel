@@ -45,16 +45,22 @@ namespace API.Controllers
             _productoRepository.Create(producto);
         }
 
-        // PUT api/<PruductoController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<PruductoController>
+        [HttpPut]
+        public async Task<IActionResult> Put(Producto producto)
         {
+            _productoRepository.Edit(producto);
+            return Ok();
         }
 
         // DELETE api/<PruductoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            _productoRepository.Delete(id);
+
+            return Ok();
+
         }
     }
 }
