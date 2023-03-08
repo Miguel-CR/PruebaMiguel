@@ -35,18 +35,26 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _productoRepository.GetProductoByIdAsync(id));
+            var producto = await _productoRepository.GetProductoByIdAsync(id);
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(producto);
         }
 
         // POST api/<PruductoController>
-        [HttpPost]
+
+        [HttpPost("create")]
         public void Post(Producto producto)
         {
             _productoRepository.Create(producto);
         }
 
         // PUT api/<PruductoController>
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<IActionResult> Put(Producto producto)
         {
             _productoRepository.Edit(producto);
@@ -54,7 +62,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<PruductoController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             _productoRepository.Delete(id);
