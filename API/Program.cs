@@ -20,6 +20,11 @@ builder.Services.AddDbContext<MyContext>(options =>
 {
     options.UseMySQL(builder.Configuration.GetConnectionString("Default"));
 });
+//builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+//{
+//    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+//    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+//});
 //builder.Services.AddDbContext<MyContext>(
 //            dbContextOptions => dbContextOptions
 //                .UseMySql(connectionString, serverVersion)

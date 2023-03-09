@@ -3,6 +3,8 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace API.Migrations
 {
     /// <inheritdoc />
@@ -56,12 +58,26 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "Categorias",
                 columns: new[] { "Id", "Nombre" },
-                values: new object[] { 1, "Desayuno" });
+                values: new object[,]
+                {
+                    { 1, "Desayuno" },
+                    { 2, "Bebidas" },
+                    { 3, "Platos fuertes" },
+                    { 4, "Postres" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Productos",
                 columns: new[] { "Id", "CategoriaId", "Descuento", "Detalle", "Imagen", "Nombre", "Precio" },
-                values: new object[] { 1, 1, false, "Desayuno tipico de Costa Rica, arroz, frijoles, salsa Lizano y olores.", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Pinto", 2500m });
+                values: new object[,]
+                {
+                    { 1, 1, false, "Desayuno tipico de Costa Rica arroz, frijoles, salsa Lizano y olores.", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Pinto", 2500m },
+                    { 2, 3, false, "Platillo tipico de Costa Rica, arroz, pollo demenuzado, frijoles molidos y papas tostadas.", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Arroz con pollo", 4500m },
+                    { 3, 2, true, "Bebida a base de arroz licuado con mani.", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Orchata", 2500m },
+                    { 4, 2, false, "Fresco en agua de Cas", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Freco de Cas", 2000m },
+                    { 5, 3, false, "Corte de carne con pure de papa y esalada", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Corte de carne Rib Eye", 14500m },
+                    { 6, 4, true, "Postre a base de coco con caramelo", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Flan de coco", 3500m }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_CategoriaId",
