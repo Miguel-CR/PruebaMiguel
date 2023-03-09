@@ -15,13 +15,13 @@ namespace API.Data.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column(TypeName = "VARCHAR(70)")]
+        [Column(TypeName = "VARCHAR(100)")]
         public string Nombre { get; set; }
 
         [Column(TypeName = "VARCHAR(250)")]
         public string Detalle { get; set; }
 
-        [Column(TypeName = "Decimal(6,2)")]
+        [Column(TypeName = "Decimal(8,2)")]
         public float Precio { get; set; }
 
         [Column(TypeName = "bit ")]

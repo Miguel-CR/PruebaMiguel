@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230309051715_Inicio")]
+    [Migration("20230309053614_Inicio")]
     partial class Inicio
     {
         /// <inheritdoc />
@@ -80,10 +80,10 @@ namespace API.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(70)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<decimal>("Precio")
-                        .HasColumnType("Decimal(6,2)");
+                        .HasColumnType("Decimal(8,2)");
 
                     b.HasKey("Id");
 
@@ -97,7 +97,7 @@ namespace API.Migrations
                             Id = 1,
                             CategoriaId = 1,
                             Descuento = false,
-                            Detalle = "Desayuno tipico de Costa Rica arroz, frijoles, salsa Lizano y olores.",
+                            Detalle = "Desayuno tipico arroz, frijoles, salsa Lizano y olores",
                             Imagen = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                             Nombre = "Pinto",
                             Precio = 2500m
@@ -107,7 +107,7 @@ namespace API.Migrations
                             Id = 2,
                             CategoriaId = 3,
                             Descuento = false,
-                            Detalle = "Platillo tipico de Costa Rica, arroz, pollo demenuzado, frijoles molidos y papas tostadas.",
+                            Detalle = "Arroz, pollo, frijoles molidos",
                             Imagen = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                             Nombre = "Arroz con pollo",
                             Precio = 4500m
@@ -117,7 +117,7 @@ namespace API.Migrations
                             Id = 3,
                             CategoriaId = 2,
                             Descuento = true,
-                            Detalle = "Bebida a base de arroz licuado con mani.",
+                            Detalle = "Bebida a base de arroz licuado con mani",
                             Imagen = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                             Nombre = "Orchata",
                             Precio = 2500m
@@ -129,7 +129,7 @@ namespace API.Migrations
                             Descuento = false,
                             Detalle = "Fresco en agua de Cas",
                             Imagen = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            Nombre = "Freco de Cas",
+                            Nombre = "Fresco de Cas",
                             Precio = 2000m
                         },
                         new
@@ -140,7 +140,7 @@ namespace API.Migrations
                             Detalle = "Corte de carne con pure de papa y esalada",
                             Imagen = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                             Nombre = "Corte de carne Rib Eye",
-                            Precio = 14500m
+                            Precio = 10000m
                         },
                         new
                         {
